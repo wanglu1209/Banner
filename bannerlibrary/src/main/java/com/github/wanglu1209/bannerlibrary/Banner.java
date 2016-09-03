@@ -97,7 +97,7 @@ public class Banner extends FrameLayout {
             @Override
             public void run() {
                 ImageView iv = new ImageView(mContext);
-                iv.setImageDrawable(mContext.getDrawable(mDot[1]));
+                iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 /**
                  * 设置选中小圆点的左边距
