@@ -2,6 +2,18 @@
 
 ## 如何使用？
 
+	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}	
+	
+	--------------------
+	
+	dependencies {
+	        compile 'com.github.wanglu1209:Banner:1.0'
+	}
 继承BannerPagerAdapter，重写构造和setView方法即可
 
 在构造里传入context和数据，在setView方法中实现自己想要实现的效果
