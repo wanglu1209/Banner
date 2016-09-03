@@ -9,6 +9,9 @@ import android.view.MotionEvent;
 
 /**
  * Created by WangLu on 16/9/1.
+ * 重写ViewPager来达到定时翻页和触摸事件的监听
+ * 当ActionDown时,停止自动翻页
+ * 当手指抬起,开始计时自动翻页
  */
 public class BannerViewPager extends ViewPager  {
 

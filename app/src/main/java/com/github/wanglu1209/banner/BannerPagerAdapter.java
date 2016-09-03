@@ -13,7 +13,13 @@ import java.util.List;
  */
 public abstract class BannerPagerAdapter<T> extends PagerAdapter {
 
+    /**
+     * 把banner页的个数设置为100页,这样就达到了无限的效果
+     */
     private static final int BANNER_SIZE = 100;
+    /**
+     * size为当前banner实际的页数
+     */
     public int size = -1;
     private int position;
 
@@ -35,8 +41,11 @@ public abstract class BannerPagerAdapter<T> extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        position %= size;
+        position %= size;   //通过这句话来确定实际的position
         this.position = position;
+        /**
+         * 和正常设置pagerAdapter一样的步骤
+         */
         View view = setView(position);
         container.addView(view);
         final int p = position;
@@ -54,6 +63,11 @@ public abstract class BannerPagerAdapter<T> extends PagerAdapter {
     @Override
     public void finishUpdate(ViewGroup container) {
         ViewPager pager = (ViewPager) container;
+        /**
+         * 这里获取到当前是第几页
+         * 如果是第一页的话就给设置为实际大小的后面一页,比如说一共有4页,那么就设置为第5页,因为第5页是和第1页一样的
+         * 如果是最后一页则设置为实际大小的最后一页
+         */
         int p = pager.getCurrentItem();
         if (p == 0) {
             p = size;

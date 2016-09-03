@@ -24,6 +24,10 @@ public class AdapterDemo extends BannerPagerAdapter {
         this.data = data;
     }
 
+    /**
+     * 只需要重写构造和这个方法即可
+     * 在这里可以设置自己的View,使用自己的图片加载库
+     */
     @Override
     public View setView(int position) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.test, null);

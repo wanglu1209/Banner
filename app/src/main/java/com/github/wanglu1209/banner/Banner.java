@@ -15,16 +15,34 @@ import android.widget.LinearLayout;
  */
 public class Banner extends FrameLayout {
 
+    /**
+     * 确定小圆点的位置
+     * 中间or右边
+     */
     public static final int CENTER = 1;
     public static final int RIGHT = 5;
 
     private Context mContext;
+    /**
+     * 小圆点的drawable
+     * 下标0的为没有被选中的
+     * 下标1的为已经被选中的
+     */
     private int[] mDot = new int[2];
+    /**
+     * 存放小圆点的Group
+     */
     private LinearLayout mDotGroup;
-    private BannerViewPager mView;
-    private BannerPagerAdapter mAdapter;
+    /**
+     * 存放没有被选中的小圆点Group和已经被选中小圆点
+     */
     private FrameLayout mFrameLayout;
+    /**
+     * 选中的小圆点
+     */
     private View mSelectedDot;
+    private BannerViewPager mPager;
+    private BannerPagerAdapter mAdapter;
 
 
     public Banner(Context context) {
@@ -42,44 +60,72 @@ public class Banner extends FrameLayout {
     }
 
     private void init() {
-        mView = new BannerViewPager(mContext);
-        addView(mView);
+        mPager = new BannerViewPager(mContext);
+        addView(mPager);
+        /**
+         * 实例化两个Group
+         */
         mFrameLayout = new FrameLayout(mContext);
         mDotGroup = new LinearLayout(mContext);
+        /**
+         * 设置小圆点Group的方向为水平
+         */
         mDotGroup.setOrientation(LinearLayout.HORIZONTAL);
+        /**
+         * 两个Group的大小都为match_parent
+         */
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT);
+        /**
+         * 首先添加小圆点的Group
+         */
         mFrameLayout.addView(mDotGroup, params);
+        /**
+         * 然后添加包含的Group（f**k,表达能力有限）
+         */
         addView(mFrameLayout, params);
+
+        /**
+         * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
+         */
         post(new Runnable() {
             @Override
             public void run() {
                 ImageView iv = new ImageView(mContext);
                 iv.setImageDrawable(mContext.getDrawable(mDot[1]));
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                /**
+                 * 设置选中小圆点的左边距
+                 */
                 params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
                 params.gravity = Gravity.BOTTOM;
                 mFrameLayout.addView(iv, params);
                 mSelectedDot = mFrameLayout.getChildAt(1);
             }
         });
-        mView.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                /**
+                 * 获取到当前position
+                 */
                 position %= mAdapter.size;
+                /**
+                 * 判断如果当前的position不是最后一个,那么就设置偏移量来实现被选中小圆点的滑动效果
+                 */
                 if (mSelectedDot != null && position != mAdapter.size -1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX((position * dx) + positionOffset * dx);
                 }
-
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 position %= mAdapter.size;
+                /**
+                 * 如果已经是最后一个,那么则直接把小圆点定位到那,不然滑动效果会出错
+                 */
                 if (mSelectedDot != null && position == mAdapter.size - 1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX(position * dx);
@@ -96,11 +142,17 @@ public class Banner extends FrameLayout {
 
     public Banner setAdapter(BannerPagerAdapter adapter) {
         mAdapter = adapter;
-        mView.setAdapter(mAdapter);
+        mPager.setAdapter(mAdapter);
         LinearLayout.LayoutParams dotParams =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
+        /**
+         * 未选中小圆点的间距
+         */
         dotParams.rightMargin = 10;
+        /**
+         * 创建未选中的小圆点
+         */
         for (int i = 0; i < mAdapter.size; i++) {
             ImageView iv = new ImageView(mContext);
             iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
@@ -117,16 +169,16 @@ public class Banner extends FrameLayout {
     }
 
     public Banner startAutoPlay() {
-        mView.startAutoPlay();
+        mPager.startAutoPlay();
         return this;
     }
 
     public void stopAutoPlay() {
-        mView.stopAutoPlay();
+        mPager.stopAutoPlay();
     }
 
     public Banner setTime(int time) {
-        mView.setTime(time);
+        mPager.setTime(time);
         return this;
     }
 

@@ -23,11 +23,20 @@ public class MainActivity extends AppCompatActivity {
         data.add(R.mipmap.a2);
         data.add(R.mipmap.a3);
         data.add(R.mipmap.a4);
+
+
         AdapterDemo ad = new AdapterDemo(this, data);
 
         Banner bv = (Banner) findViewById(R.id.bv);
-        bv.
-            setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
+
+        /**
+         * 关于这里的设置参数问题,是需要这样使用的
+         * 在设置了小圆点之后才能设置适配器
+         * 因为只有在适配器里才会根据一共多少条数据来适配
+         * 最后需要调用开始轮播
+         * 个人建议在onPause()/onDestroy()方法中来停止 -- stopAutoPlay()
+         */
+        bv. setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
             setDotGravity(Banner.CENTER).
             setAdapter(ad).
             setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
