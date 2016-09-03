@@ -1,6 +1,6 @@
 # Banner
 
-![banner](file:///Users/WangLu/Desktop/gif1.gif)
+![banner](http://i1.piimg.com/567571/282c68fa5261a4aa.gif)
 
 ## 如何使用？
 
