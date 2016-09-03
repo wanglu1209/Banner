@@ -153,7 +153,7 @@ public class Banner extends FrameLayout {
         /**
          * 未选中小圆点的间距
          */
-        dotParams.rightMargin = 10;
+        dotParams.rightMargin = 12;
         /**
          * 创建未选中的小圆点
          */
@@ -195,9 +195,9 @@ public class Banner extends FrameLayout {
     public Banner setDotGravity(int gravity) {
         mDotGroup.setGravity(gravity | Gravity.BOTTOM);
         if(gravity == CENTER){
-            mFrameLayout.setPadding(0, 0, 0, 10);
+            mFrameLayout.setPadding(0, 0, 0, 20);
         }else{
-            mFrameLayout.setPadding(0, 0, 10, 10);
+            mFrameLayout.setPadding(0, 0, 10, 20);
         }
         return this;
     }

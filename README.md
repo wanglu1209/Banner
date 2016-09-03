@@ -1,5 +1,7 @@
 # Banner
 
+![banner](http://i1.piimg.com/567571/282c68fa5261a4aa.gif)
+
 ## 如何使用？
 
 	allprojects {
