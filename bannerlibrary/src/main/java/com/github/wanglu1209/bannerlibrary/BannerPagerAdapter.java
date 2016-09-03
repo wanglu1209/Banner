@@ -1,4 +1,4 @@
-package com.github.wanglu1209.banner;
+package com.github.wanglu1209.bannerlibrary;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.github.wanglu1209.banner.Banner;
-import com.github.wanglu1209.banner.BannerPagerAdapter;
 import com.github.wanglu1209.banner.R;
+import com.github.wanglu1209.bannerlibrary.Banner;
+import com.github.wanglu1209.bannerlibrary.BannerPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

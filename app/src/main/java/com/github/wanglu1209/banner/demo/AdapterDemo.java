@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.github.wanglu1209.banner.BannerPagerAdapter;
 import com.github.wanglu1209.banner.R;
+import com.github.wanglu1209.bannerlibrary.BannerPagerAdapter;
 
 import java.util.List;
 
