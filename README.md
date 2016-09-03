@@ -1,6 +1,6 @@
 # Banner
 
-![](/Users/WangLu/Desktop/gif1.gif)
+![](file:///Users/WangLu/Desktop/gif1.gif)
 
 ## 如何使用？
 
