@@ -1,5 +1,7 @@
 # Banner
 
+![](/Users/WangLu/Desktop/gif1.gif)
+
 ## 如何使用？
 
 	allprojects {
