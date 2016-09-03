@@ -72,6 +72,10 @@ public class Banner extends FrameLayout {
          */
         mDotGroup.setOrientation(LinearLayout.HORIZONTAL);
         /**
+         * 如果不设置则小圆点在中间
+         */
+        mDotGroup.setGravity(CENTER | Gravity.BOTTOM);
+        /**
          * 两个Group的大小都为match_parent
          */
         LinearLayout.LayoutParams params =

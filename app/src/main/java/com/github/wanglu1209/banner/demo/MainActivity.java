@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterDemo ad = new AdapterDemo(this, data);
 
-        Banner bv = (Banner) findViewById(R.id.bv);
+        Banner banner = (Banner) findViewById(R.id.banner);
 
         /**
          * 关于这里的设置参数问题,是需要这样使用的
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
          * 最后需要调用开始轮播
          * 个人建议在onPause()/onDestroy()方法中来停止 -- stopAutoPlay()
          */
-        bv. setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
+        banner. setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
             setDotGravity(Banner.CENTER).
             setAdapter(ad).
             setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {

@@ -7,7 +7,7 @@
 
 
     <com.github.wanglu1209.banner.Banner
-        android:id="@+id/bv"
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"></com.github.wanglu1209.banner.Banner>
 </RelativeLayout>
