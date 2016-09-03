@@ -16,8 +16,8 @@ import android.view.MotionEvent;
 public class BannerViewPager extends ViewPager  {
 
     private static final int MSG_WHAT = -00001;
-    private static int SEND_TIME = 5000;
-    private static int position;
+    private int SEND_TIME = 5000;
+    private int position;
 
 
     private Handler mHandler = new Handler() {
