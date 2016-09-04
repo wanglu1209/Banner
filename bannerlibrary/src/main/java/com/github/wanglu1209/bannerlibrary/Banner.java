@@ -194,10 +194,11 @@ public class Banner extends FrameLayout {
 
     public Banner setDotGravity(int gravity) {
         mDotGroup.setGravity(gravity | Gravity.BOTTOM);
+        float density = mContext.getResources().getDisplayMetrics().density;
         if(gravity == CENTER){
-            mFrameLayout.setPadding(0, 0, 0, 20);
+            mFrameLayout.setPadding(0, 0, 0, (int) (density * 10));
         }else{
-            mFrameLayout.setPadding(0, 0, 10, 20);
+            mFrameLayout.setPadding(0, 0, 10, (int) (density * 10));
         }
         return this;
     }

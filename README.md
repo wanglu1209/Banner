@@ -20,33 +20,13 @@
 
 在构造里传入context和数据，在setView方法中实现自己想要实现的效果
 
-然后在使用的地方：
+然后在使用的地方调用方法即可，具体的可以查看『demo』文件夹下的两个文件~
 
-   	AdapterDemo ad = new AdapterDemo(this, data);
+**注释已写**
+
+如果想要查看细节的话，可以移步[简书 -- 自定义banner实现](http://www.jianshu.com/p/0046c079f528)
+
    	
-    Banner banner = (Banner) findViewById(R.id.banner);
-
-    /**
-     * 关于这里的设置参数问题,是需要这样使用的
-     * 在设置了小圆点之后才能设置适配器
-     * 因为只有在适配器里才会根据一共多少条数据来适配
-     * 最后需要调用开始轮播
-     * 个人建议在onPause()/onDestroy()方法中来停止 -- stopAutoPlay()
-     */
-    banner. setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
-        setDotGravity(Banner.CENTER).
-        setAdapter(ad).
-        setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-            }
-        }).
-        startAutoPlay();
-
-
-
-
 
 ## 技术要点
 
