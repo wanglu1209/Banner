@@ -14,7 +14,7 @@
 	--------------------
 	
 	dependencies {
-	        compile 'com.github.wanglu1209:Banner:1.1'
+	        compile 'com.github.wanglu1209:Banner:1.12'
 	}
 继承BannerPagerAdapter，重写构造和setView方法即可
 
