@@ -147,6 +147,7 @@ public class Banner extends FrameLayout {
     public Banner setAdapter(BannerPagerAdapter adapter) {
         mAdapter = adapter;
         mPager.setAdapter(mAdapter);
+        mPager.setCurrentItem(mAdapter.size);
         LinearLayout.LayoutParams dotParams =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -190,6 +191,14 @@ public class Banner extends FrameLayout {
         mDot[0] = dots[0];
         mDot[1] = dots[1];
         return this;
+    }
+
+    public void setCurrentPager(int page){
+        mPager.setCurrentItem(page);
+    }
+
+    public void setCurrentPager(int page, boolean isSmooth){
+        mPager.setCurrentItem(page, isSmooth);
     }
 
     public Banner setDotGravity(int gravity) {
