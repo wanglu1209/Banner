@@ -46,9 +46,9 @@ public abstract class BannerPagerAdapter<T> extends PagerAdapter {
         /**
          * 和正常设置pagerAdapter一样的步骤
          */
-        View view = setView(position);
-        container.addView(view);
         final int p = position;
+        View view = setView(p);
+        container.addView(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
