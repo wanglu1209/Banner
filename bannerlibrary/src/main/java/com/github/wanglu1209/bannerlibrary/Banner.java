@@ -90,24 +90,7 @@ public class Banner extends FrameLayout {
          */
         addView(mFrameLayout, params);
 
-        /**
-         * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
-         */
-        post(new Runnable() {
-            @Override
-            public void run() {
-                ImageView iv = new ImageView(mContext);
-                iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                /**
-                 * 设置选中小圆点的左边距
-                 */
-                params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
-                params.gravity = Gravity.BOTTOM;
-                mFrameLayout.addView(iv, params);
-                mSelectedDot = mFrameLayout.getChildAt(1);
-            }
-        });
+
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -190,6 +173,24 @@ public class Banner extends FrameLayout {
     public Banner setDot(int... dots) {
         mDot[0] = dots[0];
         mDot[1] = dots[1];
+        /**
+         * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
+         */
+        post(new Runnable() {
+            @Override
+            public void run() {
+                ImageView iv = new ImageView(mContext);
+                iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                /**
+                 * 设置选中小圆点的左边距
+                 */
+                params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
+                params.gravity = Gravity.BOTTOM;
+                mFrameLayout.addView(iv, params);
+                mSelectedDot = mFrameLayout.getChildAt(1);
+            }
+        });
         return this;
     }
 

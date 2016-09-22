@@ -37,7 +37,6 @@ public class BannerViewPager extends ViewPager  {
         super(context, attrs);
     }
 
-
     public BannerViewPager startAutoPlay() {
         mHandler.sendEmptyMessageDelayed(MSG_WHAT, SEND_TIME);
         return this;
