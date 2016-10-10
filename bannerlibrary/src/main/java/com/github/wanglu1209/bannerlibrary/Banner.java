@@ -104,9 +104,8 @@ public class Banner extends FrameLayout {
         Log.d("--------->tag", "run: " + mDot[0]);
         Log.d("--------->tag", "run: " + mDot[1]);
         Log.d("--------->", "run: " + mDot.length);
-        if (mDot[1] != 0){
-          iv.setImageDrawable(ResourcesCompat.getDrawable(mContext.getResources(), mDot[1], null));
-        }
+        iv.setImageDrawable(
+            ResourcesCompat.getDrawable(getResources(), R.drawable.selector_dot_able, null));
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT);
         /**
@@ -117,7 +116,8 @@ public class Banner extends FrameLayout {
         mFrameLayout.addView(iv, params);
         mSelectedDot = mFrameLayout.getChildAt(1);
       }
-    }); mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    });
+    mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
       public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         /**
@@ -166,7 +166,12 @@ public class Banner extends FrameLayout {
      */
     for (int i = 0; i < mAdapter.size; i++) {
       ImageView iv = new ImageView(mContext);
-      iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        iv.setImageDrawable(
+            mContext.getResources().getDrawable(R.drawable.selector_dot_enable, null));
+      } else {
+        iv.setImageDrawable(mContext.getResources().getDrawable(R.drawable.selector_dot_enable));
+      }
       iv.setLayoutParams(dotParams);
       mDotGroup.addView(iv);
     }
