@@ -101,6 +101,7 @@ public class Banner extends FrameLayout {
             @Override
             public void run() {
                 ImageView iv = new ImageView(mContext);
+                Log.d("--------->", "run: 妈的,这是啥啊");
                 Log.d("--------->tag", "run: "+mDot[1]);
                 iv.setImageDrawable(ResourcesCompat.getDrawable(mContext.getResources(), mDot[1], null));
                 LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
