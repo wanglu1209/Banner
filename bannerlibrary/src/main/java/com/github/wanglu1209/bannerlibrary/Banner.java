@@ -1,6 +1,8 @@
 package com.github.wanglu1209.bannerlibrary;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -97,8 +99,10 @@ public class Banner extends FrameLayout {
             @Override
             public void run() {
                 ImageView iv = new ImageView(mContext);
-                iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    iv.setImageDrawable(mContext.getApplicationContext().getResources().getDrawable(mDot[1],null));
+                }
+                LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 /**
                  * 设置选中小圆点的左边距
                  */
