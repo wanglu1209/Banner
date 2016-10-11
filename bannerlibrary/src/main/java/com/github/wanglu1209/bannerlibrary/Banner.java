@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -147,7 +148,7 @@ public class Banner extends FrameLayout {
     });
   }
 
-  public Banner setAdapter(BannerPagerAdapter adapter) {
+  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) public Banner setAdapter(BannerPagerAdapter adapter) {
     mAdapter = adapter;
     mPager.setAdapter(mAdapter);
     mPager.setCurrentItem(mAdapter.size);
@@ -164,11 +165,7 @@ public class Banner extends FrameLayout {
     for (int i = 0; i < mAdapter.size; i++) {
       ImageView iv = new ImageView(mContext);
       if (mDot[0] != 0) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0], null));
-        } else {
-          iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
-        }
+        iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), mDot[0], null));
       }
       iv.setLayoutParams(dotParams);
       mDotGroup.addView(iv);
