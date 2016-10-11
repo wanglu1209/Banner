@@ -47,6 +47,7 @@ public class Banner extends FrameLayout {
   private BannerViewPager mPager;
   private BannerPagerAdapter mAdapter;
 
+
   public Banner(Context context) {
     this(context, null);
   }
@@ -92,26 +93,7 @@ public class Banner extends FrameLayout {
      */
     addView(mFrameLayout, params);
 
-    /**
-     * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
-     */
-    post(new Runnable() {
-      @Override public void run() {
-        ImageView iv = new ImageView(mContext);
-        if (mDot[1] != 0) {
-          iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), mDot[1], null));
-        }
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT);
-        /**
-         * 设置选中小圆点的左边距
-         */
-        params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
-        params.gravity = Gravity.BOTTOM;
-        mFrameLayout.addView(iv, params);
-        mSelectedDot = mFrameLayout.getChildAt(1);
-      }
-    });
+
     mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
       public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -122,13 +104,14 @@ public class Banner extends FrameLayout {
         /**
          * 判断如果当前的position不是最后一个,那么就设置偏移量来实现被选中小圆点的滑动效果
          */
-        if (mSelectedDot != null && position != mAdapter.size - 1) {
+        if (mSelectedDot != null && position != mAdapter.size -1) {
           float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
           mSelectedDot.setTranslationX((position * dx) + positionOffset * dx);
         }
       }
 
-      @Override public void onPageSelected(int position) {
+      @Override
+      public void onPageSelected(int position) {
         position %= mAdapter.size;
         /**
          * 如果已经是最后一个,那么则直接把小圆点定位到那,不然滑动效果会出错
@@ -139,13 +122,15 @@ public class Banner extends FrameLayout {
         }
       }
 
-      @Override public void onPageScrollStateChanged(int state) {
+      @Override
+      public void onPageScrollStateChanged(int state) {
 
       }
     });
+
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) public Banner setAdapter(BannerPagerAdapter adapter) {
+  public Banner setAdapter(BannerPagerAdapter adapter) {
     mAdapter = adapter;
     mPager.setAdapter(mAdapter);
     mPager.setCurrentItem(mAdapter.size);
@@ -161,13 +146,28 @@ public class Banner extends FrameLayout {
      */
     for (int i = 0; i < mAdapter.size; i++) {
       ImageView iv = new ImageView(mContext);
-      if (mDot[0] != 0) {
-        iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), mDot[0], null));
-      }
+      iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
       iv.setLayoutParams(dotParams);
       mDotGroup.addView(iv);
     }
-
+    /**
+     * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
+     */
+    post(new Runnable() {
+      @Override
+      public void run() {
+        ImageView iv = new ImageView(mContext);
+        iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        /**
+         * 设置选中小圆点的左边距
+         */
+        params.leftMargin = (int) mDotGroup.getChildAt(0).getLeft();
+        params.gravity = Gravity.BOTTOM;
+        mFrameLayout.addView(iv, params);
+        mSelectedDot = mFrameLayout.getChildAt(1);
+      }
+    });
     return this;
   }
 
@@ -190,26 +190,26 @@ public class Banner extends FrameLayout {
     return this;
   }
 
-  public Banner setDot(@DrawableRes int... dots) {
+  public Banner setDot(int... dots) {
     mDot[0] = dots[0];
     mDot[1] = dots[1];
     return this;
   }
 
-  public void setCurrentPager(int page) {
+  public void setCurrentPager(int page){
     mPager.setCurrentItem(page);
   }
 
-  public void setCurrentPager(int page, boolean isSmooth) {
+  public void setCurrentPager(int page, boolean isSmooth){
     mPager.setCurrentItem(page, isSmooth);
   }
 
   public Banner setDotGravity(int gravity) {
     mDotGroup.setGravity(gravity | Gravity.BOTTOM);
     float density = mContext.getResources().getDisplayMetrics().density;
-    if (gravity == CENTER) {
+    if(gravity == CENTER){
       mFrameLayout.setPadding(0, 0, 0, (int) (density * 10));
-    } else {
+    }else{
       mFrameLayout.setPadding(0, 0, 10, (int) (density * 10));
     }
     return this;
