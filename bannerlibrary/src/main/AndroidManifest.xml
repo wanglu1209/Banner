@@ -6,7 +6,6 @@
   <application
       android:allowBackup="true"
       android:supportsRtl="true"
-      tools:node="replace"
       >
   </application>
 </manifest>
