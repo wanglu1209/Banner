@@ -16,9 +16,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-/**
- * Created by WangLu on 16/9/2.
- */
 public class Banner extends FrameLayout {
 
   /**
