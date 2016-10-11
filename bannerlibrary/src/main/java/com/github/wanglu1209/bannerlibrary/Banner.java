@@ -100,12 +100,9 @@ public class Banner extends FrameLayout {
     post(new Runnable() {
       @Override public void run() {
         ImageView iv = new ImageView(mContext);
-        Log.d("--------->", "run: 妈的,这是啥啊");
-        Log.d("--------->tag", "run: " + mDot[0]);
-        Log.d("--------->tag", "run: " + mDot[1]);
-        Log.d("--------->", "run: " + mDot.length);
-        iv.setImageDrawable(
-            ResourcesCompat.getDrawable(getResources(), R.drawable.selector_dot_able, null));
+        if (mDot[1] != 0) {
+          iv.setImageDrawable(ResourcesCompat.getDrawable(getResources(), mDot[1], null));
+        }
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT);
         /**
@@ -166,11 +163,12 @@ public class Banner extends FrameLayout {
      */
     for (int i = 0; i < mAdapter.size; i++) {
       ImageView iv = new ImageView(mContext);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        iv.setImageDrawable(
-            mContext.getResources().getDrawable(R.drawable.selector_dot_enable, null));
-      } else {
-        iv.setImageDrawable(mContext.getResources().getDrawable(R.drawable.selector_dot_enable));
+      if (mDot[0] != 0) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0], null));
+        } else {
+          iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
+        }
       }
       iv.setLayoutParams(dotParams);
       mDotGroup.addView(iv);
