@@ -34,7 +34,7 @@ public class Banner extends FrameLayout {
    * 下标0的为没有被选中的
    * 下标1的为已经被选中的
    */
-  private @DrawableRes int[] mDot = new int[2];
+  private int[] mDot = new int[2];
   /**
    * 存放小圆点的Group
    */
