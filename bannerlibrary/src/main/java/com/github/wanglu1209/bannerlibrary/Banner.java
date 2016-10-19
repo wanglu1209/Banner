@@ -131,22 +131,6 @@ public class Banner extends FrameLayout {
         mAdapter = adapter;
         mPager.setAdapter(mAdapter);
         mPager.setCurrentItem(mAdapter.size);
-        LinearLayout.LayoutParams dotParams =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-        /**
-         * 未选中小圆点的间距
-         */
-        dotParams.rightMargin = 12;
-        /**
-         * 创建未选中的小圆点
-         */
-        for (int i = 0; i < mAdapter.size; i++) {
-            ImageView iv = new ImageView(mContext);
-            iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
-            iv.setLayoutParams(dotParams);
-            mDotGroup.addView(iv);
-        }
 
         return this;
     }
@@ -179,6 +163,24 @@ public class Banner extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
+
+                LinearLayout.LayoutParams dotParams =
+                        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                /**
+                 * 未选中小圆点的间距
+                 */
+                dotParams.rightMargin = 12;
+                /**
+                 * 创建未选中的小圆点
+                 */
+                for (int i = 0; i < mAdapter.size; i++) {
+                    ImageView iv = new ImageView(mContext);
+                    iv.setImageDrawable(mContext.getResources().getDrawable(mDot[0]));
+                    iv.setLayoutParams(dotParams);
+                    mDotGroup.addView(iv);
+                }
+
                 ImageView iv = new ImageView(mContext);
                 iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

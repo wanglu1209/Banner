@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 /**
@@ -53,6 +54,9 @@ public class BannerViewPager extends ViewPager  {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction() == MotionEvent.ACTION_OUTSIDE){
+            Log.d("112233", "ok");
+        }
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             stopAutoPlay();
         } else if (ev.getAction() == MotionEvent.ACTION_UP) {
