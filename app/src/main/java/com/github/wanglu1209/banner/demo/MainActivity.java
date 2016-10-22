@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
          * 最后需要调用开始轮播
          * 个人建议在onPause()/onDestroy()方法中来停止 -- stopAutoPlay()
          */
-        banner.setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
-            setDotGravity(Banner.CENTER).
-            setAdapter(ad).
-            setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
-                @Override
-                public void onClick(int position) {
-                    Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                }
-            }).
-            startAutoPlay();
+        banner.setDotGravity(Banner.CENTER).
+                setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
+                setAdapter(ad).
+                setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
+                    @Override
+                    public void onClick(int position) {
+                        Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                    }
+                }).
+                startAutoPlay();
 
     }
 }
