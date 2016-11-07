@@ -14,7 +14,8 @@
 	--------------------
 	
 	dependencies {
-	        compile 'com.github.wanglu1209:Banner:1.12'
+	        compile 'com.github.BosCattle:Banner:3.0.1'
+
 	}
 继承BannerPagerAdapter，重写构造和setView方法即可
 
@@ -39,6 +40,3 @@
 
 
 ---
-
-
-**其实写的时候各种坑，到现在写完了又不知道说啥了，就这样吧~**
