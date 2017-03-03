@@ -101,7 +101,7 @@ public class Banner extends FrameLayout {
                 /**
                  * 判断如果当前的position不是最后一个,那么就设置偏移量来实现被选中小圆点的滑动效果
                  */
-                if (mSelectedDot != null && position != mAdapter.size -1) {
+                if (mSelectedDot != null && position != mAdapter.size -1 && mAdapter.size != 1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX((position * dx) + positionOffset * dx);
                 }
@@ -113,7 +113,7 @@ public class Banner extends FrameLayout {
                 /**
                  * 如果已经是最后一个,那么则直接把小圆点定位到那,不然滑动效果会出错
                  */
-                if (mSelectedDot != null && position == mAdapter.size - 1) {
+                if (mSelectedDot != null && position == mAdapter.size - 1&& mAdapter.size != 1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX(position * dx);
                 }
@@ -153,7 +153,7 @@ public class Banner extends FrameLayout {
 
 
         /**
-         * 添加到任务栈,当前所有任务完事之后添加已经选中的那个小圆点
+         * 添加到任务栈,当前所有任务完成之后添加已经选中的小圆点
          */
         post(new Runnable() {
             @Override

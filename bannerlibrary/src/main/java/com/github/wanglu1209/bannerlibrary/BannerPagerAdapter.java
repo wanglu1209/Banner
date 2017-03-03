@@ -29,6 +29,8 @@ public abstract class BannerPagerAdapter<T> extends PagerAdapter {
         size = data.size();
     }
 
+
+
     @Override
     public int getCount() {
         return BANNER_SIZE;
