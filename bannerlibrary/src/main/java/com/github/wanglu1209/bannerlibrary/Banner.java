@@ -101,7 +101,7 @@ public class Banner extends FrameLayout {
                 /**
                  * 判断如果当前的position不是最后一个,那么就设置偏移量来实现被选中小圆点的滑动效果
                  */
-                if (mSelectedDot != null && position != mAdapter.size -1 && mAdapter.size != 1) {
+                if (mSelectedDot != null && position != mAdapter.size - 1 && mAdapter.size != 1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX((position * dx) + positionOffset * dx);
                 }
@@ -113,7 +113,7 @@ public class Banner extends FrameLayout {
                 /**
                  * 如果已经是最后一个,那么则直接把小圆点定位到那,不然滑动效果会出错
                  */
-                if (mSelectedDot != null && position == mAdapter.size - 1&& mAdapter.size != 1) {
+                if (mSelectedDot != null && position == mAdapter.size - 1 && mAdapter.size != 1) {
                     float dx = mDotGroup.getChildAt(1).getX() - mDotGroup.getChildAt(0).getX();
                     mSelectedDot.setTranslationX(position * dx);
                 }
@@ -132,7 +132,8 @@ public class Banner extends FrameLayout {
         mPager.setAdapter(mAdapter);
         mPager.setCurrentItem(mAdapter.size);
 
-
+        if (mDotGroup.getChildCount() != 0)
+            mDotGroup.removeAllViews();
         LinearLayout.LayoutParams dotParams =
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -158,17 +159,18 @@ public class Banner extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
-
-                ImageView iv = new ImageView(mContext);
-                iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                /**
-                 * 设置选中小圆点的左边距
-                 */
-                params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
-                params.gravity = Gravity.BOTTOM;
-                mFrameLayout.addView(iv, params);
-                mSelectedDot = mFrameLayout.getChildAt(1);
+                if (mSelectedDot == null) {
+                    ImageView iv = new ImageView(mContext);
+                    iv.setImageDrawable(mContext.getResources().getDrawable(mDot[1]));
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    /**
+                     * 设置选中小圆点的左边距
+                     */
+                    params.leftMargin = (int) mDotGroup.getChildAt(0).getX();
+                    params.gravity = Gravity.BOTTOM;
+                    mFrameLayout.addView(iv, params);
+                    mSelectedDot = mFrameLayout.getChildAt(1);
+                }
             }
         });
         return this;
@@ -180,7 +182,8 @@ public class Banner extends FrameLayout {
     }
 
     public Banner startAutoPlay() {
-        mPager.startAutoPlay();
+        if (!mPager.isAutoPlay())
+            mPager.startAutoPlay();
         return this;
     }
 
@@ -200,15 +203,15 @@ public class Banner extends FrameLayout {
         return this;
     }
 
-    public void setCurrentPager(int page){
+    public void setCurrentPager(int page) {
         mPager.setCurrentItem(page);
     }
 
-    public void setCurrentPager(int page, boolean isSmooth){
+    public void setCurrentPager(int page, boolean isSmooth) {
         mPager.setCurrentItem(page, isSmooth);
     }
 
-    public Banner setScrollDuration(int duration){
+    public Banner setScrollDuration(int duration) {
         mPager.setScrollDuration(duration);
         return this;
     }
@@ -216,9 +219,9 @@ public class Banner extends FrameLayout {
     public Banner setDotGravity(int gravity) {
         mDotGroup.setGravity(gravity | Gravity.BOTTOM);
         float density = mContext.getResources().getDisplayMetrics().density;
-        if(gravity == CENTER){
+        if (gravity == CENTER) {
             mFrameLayout.setPadding(0, 0, 0, (int) (density * 10));
-        }else{
+        } else {
             mFrameLayout.setPadding(0, 0, 10, (int) (density * 10));
         }
         return this;

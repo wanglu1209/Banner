@@ -18,12 +18,15 @@ public class AdapterDemo extends BannerPagerAdapter {
     private Context mContext;
     private List<Integer> data;
 
-    public AdapterDemo(Context context, List data) {
-        super(context, data);
+    public AdapterDemo(Context context) {
         mContext = context;
-        this.data = data;
     }
 
+    @Override
+    public void setData(List data) {
+        super.setData(data);
+        this.data = data;
+    }
 
     /**
      * 只需要重写构造和这个方法即可

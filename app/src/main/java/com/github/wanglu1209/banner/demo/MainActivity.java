@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         data.add(R.mipmap.a4);
 
 
-        AdapterDemo ad = new AdapterDemo(this, data);
+        AdapterDemo ad = new AdapterDemo(this);
 
         Banner banner = (Banner) findViewById(R.id.banner);
 
@@ -36,6 +36,29 @@ public class MainActivity extends AppCompatActivity {
          * 最后需要调用开始轮播
          * 个人建议在onPause()/onDestroy()方法中来停止 -- stopAutoPlay()
          */
+        ad.setData(data);
+        banner.setDotGravity(Banner.CENTER).
+                setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
+                setAdapter(ad).
+                setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
+                    @Override
+                    public void onClick(int position) {
+                        Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                    }
+                }).
+                startAutoPlay();
+        ad.setData(data);
+        banner.setDotGravity(Banner.CENTER).
+                setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
+                setAdapter(ad).
+                setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
+                    @Override
+                    public void onClick(int position) {
+                        Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                    }
+                }).
+                startAutoPlay();
+        ad.setData(data);
         banner.setDotGravity(Banner.CENTER).
                 setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
                 setAdapter(ad).

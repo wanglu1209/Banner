@@ -20,6 +20,7 @@ public class BannerViewPager extends ViewPager  {
     private int SEND_TIME = 5000;
     private int position;
     private ViewPagerScroller mPagerScroller;
+    private boolean isAutoPlay;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -46,11 +47,17 @@ public class BannerViewPager extends ViewPager  {
     }
 
     public BannerViewPager startAutoPlay() {
+        isAutoPlay = true;
         mHandler.sendEmptyMessageDelayed(MSG_WHAT, SEND_TIME);
         return this;
     }
 
+    public boolean isAutoPlay(){
+        return isAutoPlay;
+    }
+
     public void stopAutoPlay() {
+        isAutoPlay = false;
         mHandler.removeMessages(MSG_WHAT);
     }
 

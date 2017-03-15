@@ -1,6 +1,5 @@
 package com.github.wanglu1209.bannerlibrary;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -25,10 +24,10 @@ public abstract class BannerPagerAdapter<T> extends PagerAdapter {
 
     public onItemClickListener l;
 
-    public BannerPagerAdapter(Context context, List<T> data) {
+
+    public void setData(List<T> data){
         size = data.size();
     }
-
 
 
     @Override
