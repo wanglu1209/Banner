@@ -208,6 +208,11 @@ public class Banner extends FrameLayout {
         mPager.setCurrentItem(page, isSmooth);
     }
 
+    public Banner setScrollDuration(int duration){
+        mPager.setScrollDuration(duration);
+        return this;
+    }
+
     public Banner setDotGravity(int gravity) {
         mDotGroup.setGravity(gravity | Gravity.BOTTOM);
         float density = mContext.getResources().getDisplayMetrics().density;

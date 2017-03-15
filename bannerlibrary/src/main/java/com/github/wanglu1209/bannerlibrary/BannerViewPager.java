@@ -19,7 +19,7 @@ public class BannerViewPager extends ViewPager  {
     private static final int MSG_WHAT = -00001;
     private int SEND_TIME = 5000;
     private int position;
-
+    private ViewPagerScroller mPagerScroller;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -36,6 +36,13 @@ public class BannerViewPager extends ViewPager  {
 
     public BannerViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mPagerScroller = new ViewPagerScroller(context);
+        mPagerScroller.initViewPagerScroll(this);
+    }
+
+    public void setScrollDuration(int duration){
+        mPagerScroller.setScrollDuration(duration);
+        mPagerScroller.initViewPagerScroll(this);
     }
 
     public BannerViewPager startAutoPlay() {
