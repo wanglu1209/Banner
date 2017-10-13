@@ -47,28 +47,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).
                 startAutoPlay();
-        ad.setData(data);
-        banner.setDotGravity(Banner.CENTER).
-                setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
-                setAdapter(ad).
-                setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
-                    @Override
-                    public void onClick(int position) {
-                        Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                    }
-                }).
-                startAutoPlay();
-        ad.setData(data);
-        banner.setDotGravity(Banner.CENTER).
-                setDot(R.drawable.no_selected_dot, R.drawable.selected_dot).
-                setAdapter(ad).
-                setOnItemClickListener(new BannerPagerAdapter.onItemClickListener() {
-                    @Override
-                    public void onClick(int position) {
-                        Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                    }
-                }).
-                startAutoPlay();
-
+      
     }
 }
